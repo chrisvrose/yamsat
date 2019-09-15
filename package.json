@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/chrisvrose/yamsat/issues"
   },
-  "homepage": "https://github.com/chrisvrose/yamsat#readme"
+  "homepage": "https://github.com/chrisvrose/yamsat#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
 }
