@@ -1,0 +1,19 @@
+{
+  "name": "yamsat",
+  "version": "1.0.0",
+  "description": "A stateless API implementation to store player(worldly sports) data",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisvrose/yamsat.git"
+  },
+  "author": "Christopher Rose",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/chrisvrose/yamsat/issues"
+  },
+  "homepage": "https://github.com/chrisvrose/yamsat#readme"
+}
