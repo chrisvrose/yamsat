@@ -5,3 +5,5 @@
 Note: A mongodb server is required. It will use the collection `playerInfo`.
 
 Dependencies: `mongoose express`
+
+devDependencies: `mocha chai chai-http`
