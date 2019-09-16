@@ -1,13 +1,10 @@
 const express = require('express')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
 const {playerRouter} = require('./routes/player')
-const {portNumber,mongoDBUrl} = require('./config/generalConfig')
-
+const {portNumber} = require('./config/generalConfig')
 
 const app = express()
 
-app.use(bodyParser.urlencoded())
+//app.use()
 
 app.get('/',(req,res,next)=>{
     res.json({
@@ -33,7 +30,7 @@ app.all('*',(req,res)=>{
 app.use((err,req,res,next)=>{
     if(err){
         res.status(500).json({ok:false,error:"Internal error"})
-        console.err(err)
+        console.error(err)
         //res.next()
     }
     else{
