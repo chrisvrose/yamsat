@@ -17,10 +17,6 @@ app.get('/',(req,res,next)=>{
 
 app.use(playerRouter)
 
-app.get("/sanity",(req,res,next)=>{
-    res.json({"ok":true})
-})
-
 ///Catch everything falling through the routes
 app.all('*',(req,res)=>{
     console.log(`W:Accessing ${req.url}`)
