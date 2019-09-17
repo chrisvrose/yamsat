@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 
 const playerSchema = exports.playerSchema = new mongoose.Schema(
     {
-        "playerName": String,
-        "age": Number,
-        "skill": [String]
+        "playerName":{ type:String,required:true},
+        "age": {type:Number,required:true},
+        "skill": {type:[String],required:true}
     }
 )
 
