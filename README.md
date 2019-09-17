@@ -4,6 +4,18 @@
 
 Note: A mongodb server is required. It will use the collection `playerInfo`.
 
+## Usage
+
+Use `config/generalConfig.js` to provide any configuration required.
+It is recommended to start the database fresh.
+
+```bash
+npm i
+# other config
+npm start
+```
+
+
 ## Endpoints
 
 ### /

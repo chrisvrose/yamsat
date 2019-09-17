@@ -4,7 +4,8 @@
   "description": "A stateless API implementation to store player(worldly sports) data",
   "main": "index.js",
   "scripts": {
-    "test": "node ."
+    "test": "node .",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
