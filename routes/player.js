@@ -24,7 +24,7 @@ router.use(bodyParser.json())
 
 ///TODO
 router.get("/players",(req,res,next)=>{
-    baseModel.find({},(err,resource)=>{
+    baseModel.find({players: {$exists: true, $not: {$size: 0}}},(err,resource)=>{
         res.json({"ok":true,...resource})
     })
     //res.json({'ok':true})
@@ -39,6 +39,7 @@ router.post('/players',(req,res,next)=>{
             res.status(400).json({"okay":false,"error":"Invalid request"})
         }else{
             ///Safe to insert document into db
+            let newDocument = new basePlayer(req.body.player)
             console.log(`To insert ${JSON.stringify(req.body.player)}`)
             baseModel.findOneAndUpdate(
                 {
@@ -47,7 +48,7 @@ router.post('/players',(req,res,next)=>{
                 },
                 {
                     $push:{
-                        players:req.body.player
+                        players:newDocument
                     }
                 },
                 {
@@ -87,7 +88,7 @@ router.get('/players/:id',(req,res,next)=>{
 })
 
 router.delete('/players/:id',(req,res,next)=>{
-    baseModel.update(
+    baseModel.updateMany(
         {},
         {
             $pull:{
@@ -97,14 +98,15 @@ router.delete('/players/:id',(req,res,next)=>{
             }
         },
         (err,raw)=>{
+            //console.log(`Delete:${err}`)
             if(err){
                 next(err)
             }else{
-                res.status(204).json({"ok":true,"ack":true})
+                res.status(202).json({"ok":true,"ack":true,...raw})
             }
         }
     )
-    next()
+    //next()
 })
 
 router.put("/players/:id",(req,res,next)=>{
@@ -113,20 +115,23 @@ router.put("/players/:id",(req,res,next)=>{
             res.json({"err":"invalid details"})
         }else{
             ///Validated input - req.body
+            //create a document
+            let newDocument = new basePlayer(req.body)
+            //res.json(newDocument)
             baseModel.update(
                 {
-                    "players._id":ObjectId("5d80ec5a89ae1556a2666dc3")
+                    "players._id":req.params.id
                 },
                 {
                     $set:{
-                        "players.$":req.body
+                        "players.$":newDocument
                     }
                 },
-                (err)=>{
+                (err,raw)=>{
                     if(err){
                         next(err)
                     }else{
-                        res.json({"ok":true,"ack":"true"})
+                        res.json({"ok":true,"ack":"true",...raw})
                     }
                 }
             )
